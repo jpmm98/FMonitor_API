@@ -1,0 +1,29 @@
+{
+  "name": "comapi",
+  "version": "1.0.0",
+  "description": "A RESTful API project to monitor LTI_IR_VLink based in folder activity",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpmm98/FMonitor_API.git"
+  },
+  "keywords": [
+    "File",
+    "monitor",
+    "RESTful",
+    "API",
+    "LTI_IR_VLink"
+  ],
+  "author": "Jose Macedo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpmm98/FMonitor_API/issues"
+  },
+  "homepage": "https://github.com/jpmm98/FMonitor_API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
