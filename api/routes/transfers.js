@@ -8,8 +8,14 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    const transfer = {
+        sender : req.body.sender,
+        dest : req.body.dest,
+        fileID : req.body.fileID
+     }
     res.status(201).json({
-        message: 'Adicionada uma tranferencia'
+        message: 'Adicionada uma tranferencia',
+        transfer: transfer,
     });
 });
 

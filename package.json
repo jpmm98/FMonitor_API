@@ -26,6 +26,7 @@
   "homepage": "https://github.com/jpmm98/FMonitor_API#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^5.8.9",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
