@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://AdminAdmin:'+
         useNewUrlParser : true
     }
    
-);
+)
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
