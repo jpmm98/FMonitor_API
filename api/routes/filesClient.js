@@ -6,6 +6,8 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const multer = require('multer');
+const upload = multer({dest: 'upload/'});
 
 const File = require('../models/mfile');
 
@@ -37,7 +39,8 @@ router.get('/',(req, res, next) => {
 
 
 //POST file to Client files
-router.post('/',(req, res, next) => {
+router.post('/',upload.single('file1'),(req, res, next) => {
+    console.log(req.file);
     const file = new File({
         _id: new mongoose.Types.ObjectId(),
         name : req.body.name,
