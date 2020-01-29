@@ -5,13 +5,26 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 const File = require('../models/mfile');
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, './upload/server');
+    },
+    filename: function(req, file, cb){
+        cb(null, file.originalname);
+    }
+})
+
+const upload = multer({storage: storage});
+
 
 //GET all files on the Server side
 router.get('/',(req, res, next) => {
     File.find({'user': 'Server'})
-    .select('_id name size type')
+    .select('_id name size type file')
     .exec()
     .then( docs => {
         if(docs.length >= 0){
@@ -36,13 +49,13 @@ router.get('/',(req, res, next) => {
 
 
 //POST file to Server files
-router.post('/',(req, res, next) => {
+router.post('/', upload.single('file2'),(req, res, next) => {
     const file = new File({
         _id: new mongoose.Types.ObjectId(),
-        name : req.body.name,
-        size : req.body.size,
-        type : req.body.type,
-        user : 'Server'
+        name : req.file.originalname,
+        size : req.file.size,
+        user : 'Server',
+        file : req.file.path
     })
     file
     .save()
@@ -73,7 +86,7 @@ router.post('/',(req, res, next) => {
 router.get('/:fileID', (req, res, next) => {
     const id = req.params.fileID;
     File.findById(id)
-    .select('_id name size type' )
+    .select('_id name size type file' )
     .exec()
     .then( doc => {
         console.log(doc);

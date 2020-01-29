@@ -20,6 +20,8 @@ mongoose.connect('mongodb+srv://AdminAdmin:'+
 )
 
 app.use(morgan('dev'));
+app.use('/client_files/upload', express.static('upload/client'));
+app.use('/server_files/upload', express.static('upload/server'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -38,8 +40,8 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/files_client', clientFilesRoutes);
-app.use('/files_server', serverFilesRoutes);
+app.use('/client_files', clientFilesRoutes);
+app.use('/server_files', serverFilesRoutes);
 app.use('/transfers', transfersRoutes);
 
 
